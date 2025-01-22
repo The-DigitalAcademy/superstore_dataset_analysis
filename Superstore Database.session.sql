@@ -86,8 +86,9 @@ CREATE TABLE SegmentMap (
     FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
 );
 
-CREATE TABLE "Order" (
-    OrderID VARCHAR(14) PRIMARY KEY,
+CREATE TABLE "order" (
+    RowID INT PRIMARY KEY,
+    OrderID VARCHAR(14) NOT NULL,
     OrderDate DATE,
     Sales DECIMAL(10, 5),
     Quantity INT,
@@ -98,10 +99,10 @@ CREATE TABLE "Order" (
 );
 
 CREATE TABLE ProductMap (
-    OrderID VARCHAR(14),
+    RowID INT,
     ProductID VARCHAR(15),
-    PRIMARY KEY (OrderID, ProductID),
-    FOREIGN KEY (OrderID) REFERENCES "Order"(OrderID),
+    PRIMARY KEY (RowID, ProductID),
+    FOREIGN KEY (RowID) REFERENCES "order"(RowID),
     FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
 );
 
