@@ -118,6 +118,7 @@ CREATE TABLE SubCategory (
 );
 
 CREATE TABLE SuperStore(
+    RowID INT
     OrderID VARCHAR(14),
     OrderDate DATE,
     ShipDate DATE,
