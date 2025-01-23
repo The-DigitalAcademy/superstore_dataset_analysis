@@ -1,1 +1,1 @@
-select * from productmap
+select * from category
