@@ -1228,7 +1228,7 @@
       <column caption='Stateid' datatype='integer' name='[stateid]' role='measure' type='quantitative' />
       <column caption='Subcategory' datatype='string' name='[subcategory]' role='dimension' type='nominal' />
       <column caption='Subcategoryid (Subcategory.Csv)' datatype='integer' name='[subcategoryid (subcategory.csv)]' role='measure' type='quantitative' />
-      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' object-id='' units='records'>
+      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='false' object-id='' units='records'>
         <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='/var/folders/0n/p9ms0b591cg7_09nh12318dr0000gn/T/tableau-temp/#TableauTemp_0elxxg71h3hhbl1cc4dry1fuxa6a.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='01/24/2025 09:27:51 AM' username='tableau_internal_user'>
           <relation type='collection'>
             <relation name='customers.csv_C1B57F41F27941A78FDA26E03327A537' table='[Extract].[customers.csv_C1B57F41F27941A78FDA26E03327A537]' type='table' />
@@ -2397,18 +2397,10 @@
     <worksheet name='Sheet 1'>
       <table>
         <view>
-          <datasources>
-            <datasource caption='customers+' name='federated.0gl3kmf0jeh8oa1dgmy3e1v30w94' />
-          </datasources>
+          <datasources />
           <mapsources>
             <mapsource name='Tableau' />
           </mapsources>
-          <datasource-dependencies datasource='federated.0gl3kmf0jeh8oa1dgmy3e1v30w94'>
-            <column-instance column='[orderid]' derivation='CountD' name='[ctd:orderid:qk]' pivot='key' type='quantitative' />
-            <column caption='Orderid' datatype='string' name='[orderid]' role='dimension' type='nominal' />
-            <column caption='Shipdate' datatype='date' name='[shipdate]' role='dimension' type='ordinal' />
-            <column-instance column='[shipdate]' derivation='Month-Trunc' name='[tmn:shipdate:qk]' pivot='key' type='quantitative' />
-          </datasource-dependencies>
           <aggregation value='true' />
         </view>
         <style>
@@ -2424,8 +2416,8 @@
             <mark class='Automatic' />
           </pane>
         </panes>
-        <rows>[federated.0gl3kmf0jeh8oa1dgmy3e1v30w94].[ctd:orderid:qk]</rows>
-        <cols>[federated.0gl3kmf0jeh8oa1dgmy3e1v30w94].[tmn:shipdate:qk]</cols>
+        <rows />
+        <cols />
       </table>
       <simple-id uuid='{4DE9FEA4-5493-4EA5-ACBE-1FCA6D573A97}' />
     </worksheet>
