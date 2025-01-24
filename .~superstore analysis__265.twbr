@@ -62,8 +62,9 @@
               <column datatype='integer' name='quantity' ordinal='4' />
               <column datatype='real' name='discount' ordinal='5' />
               <column datatype='real' name='profit' ordinal='6' />
-              <column datatype='string' name='customerid' ordinal='7' />
-              <column datatype='integer' name='shipmentid' ordinal='8' />
+              <column datatype='date' name='shipdate' ordinal='7' />
+              <column datatype='string' name='customerid' ordinal='8' />
+              <column datatype='integer' name='shipmentid' ordinal='9' />
             </columns>
           </relation>
           <relation connection='textscan.1ogjolv0j2f85f14nrlew1qh5hoa' name='productmap.csv' table='[productmap#csv]' type='table'>
@@ -80,24 +81,10 @@
               <column datatype='integer' name='categoryid' ordinal='3' />
             </columns>
           </relation>
-          <relation connection='textscan.1ogjolv0j2f85f14nrlew1qh5hoa' name='category.csv' table='[category#csv]' type='table'>
-            <columns character-set='UTF-8' header='yes' locale='en_ZA'>
-              <column datatype='integer' name='categoryid' ordinal='0' />
-              <column datatype='string' name='category' ordinal='1' />
-            </columns>
-          </relation>
-          <relation connection='textscan.1ogjolv0j2f85f14nrlew1qh5hoa' name='subcategory.csv' table='[subcategory#csv]' type='table'>
-            <columns character-set='UTF-8' header='yes' locale='en_ZA' separator=','>
-              <column datatype='integer' name='subcategoryid' ordinal='0' />
-              <column datatype='string' name='subcategory' ordinal='1' />
-              <column datatype='integer' name='categoryid' ordinal='2' />
-            </columns>
-          </relation>
           <relation connection='textscan.1ogjolv0j2f85f14nrlew1qh5hoa' name='shipment.csv' table='[shipment#csv]' type='table'>
             <columns character-set='UTF-8' header='yes' locale='en_ZA'>
               <column datatype='integer' name='shipmentid' ordinal='0' />
-              <column datatype='date' name='shipdate' ordinal='1' />
-              <column datatype='string' name='shipmode' ordinal='2' />
+              <column datatype='string' name='shipmode' ordinal='1' />
             </columns>
           </relation>
           <relation connection='textscan.1ogjolv0j2f85f14nrlew1qh5hoa' name='postalcodemap.csv' table='[postalcodemap#csv]' type='table'>
@@ -150,10 +137,7 @@
           </relation>
         </relation>
         <cols>
-          <map key='[category]' value='[category.csv].[category]' />
-          <map key='[categoryid (product.csv)]' value='[product.csv].[categoryid]' />
-          <map key='[categoryid (subcategory.csv)]' value='[subcategory.csv].[categoryid]' />
-          <map key='[categoryid]' value='[category.csv].[categoryid]' />
+          <map key='[categoryid]' value='[product.csv].[categoryid]' />
           <map key='[city]' value='[city.csv].[city]' />
           <map key='[cityid (city.csv)]' value='[city.csv].[cityid]' />
           <map key='[cityid]' value='[citymap.csv].[cityid]' />
@@ -188,15 +172,13 @@
           <map key='[segment]' value='[segment.csv].[segment]' />
           <map key='[segmentid (segment.csv)]' value='[segment.csv].[segmentid]' />
           <map key='[segmentid]' value='[segmentmap.csv].[segmentid]' />
-          <map key='[shipdate]' value='[shipment.csv].[shipdate]' />
+          <map key='[shipdate]' value='[orders.csv].[shipdate]' />
           <map key='[shipmentid (shipment.csv)]' value='[shipment.csv].[shipmentid]' />
           <map key='[shipmentid]' value='[orders.csv].[shipmentid]' />
           <map key='[shipmode]' value='[shipment.csv].[shipmode]' />
           <map key='[state]' value='[state.csv].[state]' />
           <map key='[stateid (state.csv)]' value='[state.csv].[stateid]' />
           <map key='[stateid]' value='[statemap.csv].[stateid]' />
-          <map key='[subcategory]' value='[subcategory.csv].[subcategory]' />
-          <map key='[subcategoryid (subcategory.csv)]' value='[subcategory.csv].[subcategoryid]' />
           <map key='[subcategoryid]' value='[product.csv].[subcategoryid]' />
         </cols>
         <metadata-records>
@@ -320,43 +302,6 @@
               <attribute datatype='string' name='collation'>&quot;en_GB&quot;</attribute>
               <attribute datatype='string' name='currency'>&quot;R&quot;</attribute>
               <attribute datatype='string' name='decimal-char'>&quot;,&quot;</attribute>
-              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
-              <attribute datatype='string' name='locale'>&quot;en_ZA&quot;</attribute>
-              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
-              <attribute datatype='string' name='thousands-char'>&quot; &quot;</attribute>
-            </attributes>
-          </metadata-record>
-          <metadata-record class='capability'>
-            <remote-name />
-            <remote-type>0</remote-type>
-            <parent-name>[category.csv]</parent-name>
-            <remote-alias />
-            <aggregation>Count</aggregation>
-            <contains-null>true</contains-null>
-            <attributes>
-              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
-              <attribute datatype='string' name='collation'>&quot;en_GB&quot;</attribute>
-              <attribute datatype='string' name='currency'>&quot;R&quot;</attribute>
-              <attribute datatype='string' name='decimal-char'>&quot;,&quot;</attribute>
-              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
-              <attribute datatype='string' name='locale'>&quot;en_ZA&quot;</attribute>
-              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
-              <attribute datatype='string' name='thousands-char'>&quot; &quot;</attribute>
-            </attributes>
-          </metadata-record>
-          <metadata-record class='capability'>
-            <remote-name />
-            <remote-type>0</remote-type>
-            <parent-name>[subcategory.csv]</parent-name>
-            <remote-alias />
-            <aggregation>Count</aggregation>
-            <contains-null>true</contains-null>
-            <attributes>
-              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
-              <attribute datatype='string' name='collation'>&quot;en_GB&quot;</attribute>
-              <attribute datatype='string' name='currency'>&quot;R&quot;</attribute>
-              <attribute datatype='string' name='decimal-char'>&quot;,&quot;</attribute>
-              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
               <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
               <attribute datatype='string' name='locale'>&quot;en_ZA&quot;</attribute>
               <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
@@ -658,7 +603,7 @@
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
-            <object-id>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</object-id>
+            <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>orderid</remote-name>
@@ -673,7 +618,7 @@
             <width>1073741823</width>
             <contains-null>true</contains-null>
             <collation flag='0' name='LEN_RGB' />
-            <object-id>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</object-id>
+            <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>orderdate</remote-name>
@@ -685,7 +630,7 @@
             <local-type>date</local-type>
             <aggregation>Year</aggregation>
             <contains-null>true</contains-null>
-            <object-id>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</object-id>
+            <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>sales</remote-name>
@@ -697,7 +642,7 @@
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
-            <object-id>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</object-id>
+            <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>quantity</remote-name>
@@ -709,7 +654,7 @@
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
-            <object-id>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</object-id>
+            <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>discount</remote-name>
@@ -721,7 +666,7 @@
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
-            <object-id>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</object-id>
+            <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>profit</remote-name>
@@ -733,7 +678,19 @@
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
-            <object-id>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</object-id>
+            <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>shipdate</remote-name>
+            <remote-type>133</remote-type>
+            <local-name>[shipdate]</local-name>
+            <parent-name>[orders.csv]</parent-name>
+            <remote-alias>shipdate</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>customerid</remote-name>
@@ -741,14 +698,14 @@
             <local-name>[customerid (orders.csv)]</local-name>
             <parent-name>[orders.csv]</parent-name>
             <remote-alias>customerid</remote-alias>
-            <ordinal>16</ordinal>
+            <ordinal>17</ordinal>
             <local-type>string</local-type>
             <aggregation>Count</aggregation>
             <scale>1</scale>
             <width>1073741823</width>
             <contains-null>true</contains-null>
             <collation flag='0' name='LEN_RGB' />
-            <object-id>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</object-id>
+            <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>shipmentid</remote-name>
@@ -756,11 +713,11 @@
             <local-name>[shipmentid]</local-name>
             <parent-name>[orders.csv]</parent-name>
             <remote-alias>shipmentid</remote-alias>
-            <ordinal>17</ordinal>
+            <ordinal>18</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
-            <object-id>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</object-id>
+            <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>rowid</remote-name>
@@ -768,32 +725,17 @@
             <local-name>[rowid (productmap.csv)]</local-name>
             <parent-name>[productmap.csv]</parent-name>
             <remote-alias>rowid</remote-alias>
-            <ordinal>18</ordinal>
+            <ordinal>19</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
-            <object-id>[productmap.csv_AC4DF17BC77742B4AFD29D21694A009D]</object-id>
+            <object-id>[productmap.csv_7DEA6AA63DA94001A0C2FBE3FF3F0DF6]</object-id>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>productid</remote-name>
             <remote-type>129</remote-type>
             <local-name>[productid]</local-name>
             <parent-name>[productmap.csv]</parent-name>
-            <remote-alias>productid</remote-alias>
-            <ordinal>19</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
-            <contains-null>true</contains-null>
-            <collation flag='0' name='LEN_RGB' />
-            <object-id>[productmap.csv_AC4DF17BC77742B4AFD29D21694A009D]</object-id>
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>productid</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[productid (product.csv)]</local-name>
-            <parent-name>[product.csv]</parent-name>
             <remote-alias>productid</remote-alias>
             <ordinal>20</ordinal>
             <local-type>string</local-type>
@@ -802,14 +744,14 @@
             <width>1073741823</width>
             <contains-null>true</contains-null>
             <collation flag='0' name='LEN_RGB' />
-            <object-id>[product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2]</object-id>
+            <object-id>[productmap.csv_7DEA6AA63DA94001A0C2FBE3FF3F0DF6]</object-id>
           </metadata-record>
           <metadata-record class='column'>
-            <remote-name>productname</remote-name>
+            <remote-name>productid</remote-name>
             <remote-type>129</remote-type>
-            <local-name>[productname]</local-name>
+            <local-name>[productid (product.csv)]</local-name>
             <parent-name>[product.csv]</parent-name>
-            <remote-alias>productname</remote-alias>
+            <remote-alias>productid</remote-alias>
             <ordinal>21</ordinal>
             <local-type>string</local-type>
             <aggregation>Count</aggregation>
@@ -817,7 +759,22 @@
             <width>1073741823</width>
             <contains-null>true</contains-null>
             <collation flag='0' name='LEN_RGB' />
-            <object-id>[product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2]</object-id>
+            <object-id>[product.csv_CDD85BEB51E948C0846D78B2C36B4C49]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>productname</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[productname]</local-name>
+            <parent-name>[product.csv]</parent-name>
+            <remote-alias>productname</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[product.csv_CDD85BEB51E948C0846D78B2C36B4C49]</object-id>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>subcategoryid</remote-name>
@@ -825,89 +782,23 @@
             <local-name>[subcategoryid]</local-name>
             <parent-name>[product.csv]</parent-name>
             <remote-alias>subcategoryid</remote-alias>
-            <ordinal>22</ordinal>
-            <local-type>integer</local-type>
-            <aggregation>Sum</aggregation>
-            <contains-null>true</contains-null>
-            <object-id>[product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2]</object-id>
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>categoryid</remote-name>
-            <remote-type>20</remote-type>
-            <local-name>[categoryid (product.csv)]</local-name>
-            <parent-name>[product.csv]</parent-name>
-            <remote-alias>categoryid</remote-alias>
             <ordinal>23</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
-            <object-id>[product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2]</object-id>
+            <object-id>[product.csv_CDD85BEB51E948C0846D78B2C36B4C49]</object-id>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>categoryid</remote-name>
             <remote-type>20</remote-type>
             <local-name>[categoryid]</local-name>
-            <parent-name>[category.csv]</parent-name>
+            <parent-name>[product.csv]</parent-name>
             <remote-alias>categoryid</remote-alias>
             <ordinal>24</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
-            <object-id>[category.csv_4E708CE6F2F048A09848EE367007D683]</object-id>
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>category</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[category]</local-name>
-            <parent-name>[category.csv]</parent-name>
-            <remote-alias>category</remote-alias>
-            <ordinal>25</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
-            <contains-null>true</contains-null>
-            <collation flag='0' name='LEN_RGB' />
-            <object-id>[category.csv_4E708CE6F2F048A09848EE367007D683]</object-id>
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>subcategoryid</remote-name>
-            <remote-type>20</remote-type>
-            <local-name>[subcategoryid (subcategory.csv)]</local-name>
-            <parent-name>[subcategory.csv]</parent-name>
-            <remote-alias>subcategoryid</remote-alias>
-            <ordinal>26</ordinal>
-            <local-type>integer</local-type>
-            <aggregation>Sum</aggregation>
-            <contains-null>true</contains-null>
-            <object-id>[subcategory.csv_BF0F9A0E4B1A478EA47B3C45DD6B226A]</object-id>
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>subcategory</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[subcategory]</local-name>
-            <parent-name>[subcategory.csv]</parent-name>
-            <remote-alias>subcategory</remote-alias>
-            <ordinal>27</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
-            <contains-null>true</contains-null>
-            <collation flag='0' name='LEN_RGB' />
-            <object-id>[subcategory.csv_BF0F9A0E4B1A478EA47B3C45DD6B226A]</object-id>
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>categoryid</remote-name>
-            <remote-type>20</remote-type>
-            <local-name>[categoryid (subcategory.csv)]</local-name>
-            <parent-name>[subcategory.csv]</parent-name>
-            <remote-alias>categoryid</remote-alias>
-            <ordinal>28</ordinal>
-            <local-type>integer</local-type>
-            <aggregation>Sum</aggregation>
-            <contains-null>true</contains-null>
-            <object-id>[subcategory.csv_BF0F9A0E4B1A478EA47B3C45DD6B226A]</object-id>
+            <object-id>[product.csv_CDD85BEB51E948C0846D78B2C36B4C49]</object-id>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>shipmentid</remote-name>
@@ -915,23 +806,11 @@
             <local-name>[shipmentid (shipment.csv)]</local-name>
             <parent-name>[shipment.csv]</parent-name>
             <remote-alias>shipmentid</remote-alias>
-            <ordinal>29</ordinal>
+            <ordinal>25</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
-            <object-id>[shipment.csv_099832D179AE420393DD4676161DC67D]</object-id>
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>shipdate</remote-name>
-            <remote-type>133</remote-type>
-            <local-name>[shipdate]</local-name>
-            <parent-name>[shipment.csv]</parent-name>
-            <remote-alias>shipdate</remote-alias>
-            <ordinal>30</ordinal>
-            <local-type>date</local-type>
-            <aggregation>Year</aggregation>
-            <contains-null>true</contains-null>
-            <object-id>[shipment.csv_099832D179AE420393DD4676161DC67D]</object-id>
+            <object-id>[shipment.csv_6AC12B8093334DE996EC0CC86EA1F218]</object-id>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>shipmode</remote-name>
@@ -939,14 +818,14 @@
             <local-name>[shipmode]</local-name>
             <parent-name>[shipment.csv]</parent-name>
             <remote-alias>shipmode</remote-alias>
-            <ordinal>31</ordinal>
+            <ordinal>26</ordinal>
             <local-type>string</local-type>
             <aggregation>Count</aggregation>
             <scale>1</scale>
             <width>1073741823</width>
             <contains-null>true</contains-null>
             <collation flag='0' name='LEN_RGB' />
-            <object-id>[shipment.csv_099832D179AE420393DD4676161DC67D]</object-id>
+            <object-id>[shipment.csv_6AC12B8093334DE996EC0CC86EA1F218]</object-id>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>postalcodeid</remote-name>
@@ -954,7 +833,7 @@
             <local-name>[postalcodeid]</local-name>
             <parent-name>[postalcodemap.csv]</parent-name>
             <remote-alias>postalcodeid</remote-alias>
-            <ordinal>32</ordinal>
+            <ordinal>27</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -966,7 +845,7 @@
             <local-name>[customerid (postalcodemap.csv)]</local-name>
             <parent-name>[postalcodemap.csv]</parent-name>
             <remote-alias>customerid</remote-alias>
-            <ordinal>33</ordinal>
+            <ordinal>28</ordinal>
             <local-type>string</local-type>
             <aggregation>Count</aggregation>
             <scale>1</scale>
@@ -981,7 +860,7 @@
             <local-name>[postalcodeid (postalcode.csv)]</local-name>
             <parent-name>[postalcode.csv]</parent-name>
             <remote-alias>postalcodeid</remote-alias>
-            <ordinal>34</ordinal>
+            <ordinal>29</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -993,7 +872,7 @@
             <local-name>[postalcode]</local-name>
             <parent-name>[postalcode.csv]</parent-name>
             <remote-alias>postalcode</remote-alias>
-            <ordinal>35</ordinal>
+            <ordinal>30</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -1005,7 +884,7 @@
             <local-name>[regionid]</local-name>
             <parent-name>[regionmap.csv]</parent-name>
             <remote-alias>regionid</remote-alias>
-            <ordinal>36</ordinal>
+            <ordinal>31</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -1017,7 +896,7 @@
             <local-name>[customerid (regionmap.csv)]</local-name>
             <parent-name>[regionmap.csv]</parent-name>
             <remote-alias>customerid</remote-alias>
-            <ordinal>37</ordinal>
+            <ordinal>32</ordinal>
             <local-type>string</local-type>
             <aggregation>Count</aggregation>
             <scale>1</scale>
@@ -1032,7 +911,7 @@
             <local-name>[regionid (region.csv)]</local-name>
             <parent-name>[region.csv]</parent-name>
             <remote-alias>regionid</remote-alias>
-            <ordinal>38</ordinal>
+            <ordinal>33</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -1044,7 +923,7 @@
             <local-name>[region]</local-name>
             <parent-name>[region.csv]</parent-name>
             <remote-alias>region</remote-alias>
-            <ordinal>39</ordinal>
+            <ordinal>34</ordinal>
             <local-type>string</local-type>
             <aggregation>Count</aggregation>
             <scale>1</scale>
@@ -1059,7 +938,7 @@
             <local-name>[segmentid]</local-name>
             <parent-name>[segmentmap.csv]</parent-name>
             <remote-alias>segmentid</remote-alias>
-            <ordinal>40</ordinal>
+            <ordinal>35</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -1071,7 +950,7 @@
             <local-name>[customerid (segmentmap.csv)]</local-name>
             <parent-name>[segmentmap.csv]</parent-name>
             <remote-alias>customerid</remote-alias>
-            <ordinal>41</ordinal>
+            <ordinal>36</ordinal>
             <local-type>string</local-type>
             <aggregation>Count</aggregation>
             <scale>1</scale>
@@ -1086,7 +965,7 @@
             <local-name>[segmentid (segment.csv)]</local-name>
             <parent-name>[segment.csv]</parent-name>
             <remote-alias>segmentid</remote-alias>
-            <ordinal>42</ordinal>
+            <ordinal>37</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -1098,7 +977,7 @@
             <local-name>[segment]</local-name>
             <parent-name>[segment.csv]</parent-name>
             <remote-alias>segment</remote-alias>
-            <ordinal>43</ordinal>
+            <ordinal>38</ordinal>
             <local-type>string</local-type>
             <aggregation>Count</aggregation>
             <scale>1</scale>
@@ -1113,7 +992,7 @@
             <local-name>[stateid]</local-name>
             <parent-name>[statemap.csv]</parent-name>
             <remote-alias>stateid</remote-alias>
-            <ordinal>44</ordinal>
+            <ordinal>39</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -1125,7 +1004,7 @@
             <local-name>[customerid (statemap.csv)]</local-name>
             <parent-name>[statemap.csv]</parent-name>
             <remote-alias>customerid</remote-alias>
-            <ordinal>45</ordinal>
+            <ordinal>40</ordinal>
             <local-type>string</local-type>
             <aggregation>Count</aggregation>
             <scale>1</scale>
@@ -1140,7 +1019,7 @@
             <local-name>[stateid (state.csv)]</local-name>
             <parent-name>[state.csv]</parent-name>
             <remote-alias>stateid</remote-alias>
-            <ordinal>46</ordinal>
+            <ordinal>41</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -1152,7 +1031,7 @@
             <local-name>[state]</local-name>
             <parent-name>[state.csv]</parent-name>
             <remote-alias>state</remote-alias>
-            <ordinal>47</ordinal>
+            <ordinal>42</ordinal>
             <local-type>string</local-type>
             <aggregation>Count</aggregation>
             <scale>1</scale>
@@ -1164,26 +1043,22 @@
         </metadata-records>
       </connection>
       <aliases enabled='yes' />
-      <column caption='category.csv' datatype='table' name='[__tableau_internal_object_id__].[category.csv_4E708CE6F2F048A09848EE367007D683]' role='measure' type='quantitative' />
       <column caption='city.csv' datatype='table' name='[__tableau_internal_object_id__].[city.csv_43D685E9E3F3405DBE50CAAAC7E27731]' role='measure' type='quantitative' />
       <column caption='citymap.csv' datatype='table' name='[__tableau_internal_object_id__].[citymap.csv_FE4441B4A3E84F7D81EED2BC4D686FD5]' role='measure' type='quantitative' />
       <column caption='country.csv' datatype='table' name='[__tableau_internal_object_id__].[country.csv_BF89EABF0F794F57805F4A985E42E4F5]' role='measure' type='quantitative' />
       <column caption='customers.csv' datatype='table' name='[__tableau_internal_object_id__].[customers.csv_C1B57F41F27941A78FDA26E03327A537]' role='measure' type='quantitative' />
-      <column caption='orders.csv' datatype='table' name='[__tableau_internal_object_id__].[orders.csv_9DA8096594B947EE867D42301FE7BA4F]' role='measure' type='quantitative' />
+      <column caption='orders.csv' datatype='table' name='[__tableau_internal_object_id__].[orders.csv_558FB9DB09984EB4A894BA0E0156E898]' role='measure' type='quantitative' />
       <column caption='postalcode.csv' datatype='table' name='[__tableau_internal_object_id__].[postalcode.csv_3E76527A17094491B296B1857C299E8F]' role='measure' type='quantitative' />
       <column caption='postalcodemap.csv' datatype='table' name='[__tableau_internal_object_id__].[postalcodemap.csv_946959C265964BD7A48B834989DA3AF6]' role='measure' type='quantitative' />
-      <column caption='product.csv' datatype='table' name='[__tableau_internal_object_id__].[product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2]' role='measure' type='quantitative' />
-      <column caption='productmap.csv' datatype='table' name='[__tableau_internal_object_id__].[productmap.csv_AC4DF17BC77742B4AFD29D21694A009D]' role='measure' type='quantitative' />
+      <column caption='product.csv' datatype='table' name='[__tableau_internal_object_id__].[product.csv_CDD85BEB51E948C0846D78B2C36B4C49]' role='measure' type='quantitative' />
+      <column caption='productmap.csv' datatype='table' name='[__tableau_internal_object_id__].[productmap.csv_7DEA6AA63DA94001A0C2FBE3FF3F0DF6]' role='measure' type='quantitative' />
       <column caption='region.csv' datatype='table' name='[__tableau_internal_object_id__].[region.csv_56FD12DF50F048D7835CBA4F06C74699]' role='measure' type='quantitative' />
       <column caption='regionmap.csv' datatype='table' name='[__tableau_internal_object_id__].[regionmap.csv_5EFFF1CDEDCC4DE98B5D57B3E28C1DC4]' role='measure' type='quantitative' />
       <column caption='segment.csv' datatype='table' name='[__tableau_internal_object_id__].[segment.csv_B3F6137444254703B3F5DDA613D309EA]' role='measure' type='quantitative' />
       <column caption='segmentmap.csv' datatype='table' name='[__tableau_internal_object_id__].[segmentmap.csv_BAE15391752B4EA58DB7B37C8D1206D0]' role='measure' type='quantitative' />
-      <column caption='shipment.csv' datatype='table' name='[__tableau_internal_object_id__].[shipment.csv_099832D179AE420393DD4676161DC67D]' role='measure' type='quantitative' />
+      <column caption='shipment.csv' datatype='table' name='[__tableau_internal_object_id__].[shipment.csv_6AC12B8093334DE996EC0CC86EA1F218]' role='measure' type='quantitative' />
       <column caption='state.csv' datatype='table' name='[__tableau_internal_object_id__].[state.csv_8B01A781D27841CE9CD044C8BAABA923]' role='measure' type='quantitative' />
       <column caption='statemap.csv' datatype='table' name='[__tableau_internal_object_id__].[statemap.csv_779EC512A5FF4E05B92EBF4C52C65CAE]' role='measure' type='quantitative' />
-      <column caption='subcategory.csv' datatype='table' name='[__tableau_internal_object_id__].[subcategory.csv_BF0F9A0E4B1A478EA47B3C45DD6B226A]' role='measure' type='quantitative' />
-      <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal' />
-      <column caption='Categoryid (Subcategory.Csv)' datatype='integer' name='[categoryid (subcategory.csv)]' role='measure' type='quantitative' />
       <column caption='Categoryid' datatype='integer' name='[categoryid]' role='measure' type='quantitative' />
       <column caption='City' datatype='string' name='[city]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
       <column caption='Cityid (City.Csv)' datatype='integer' name='[cityid (city.csv)]' role='measure' type='quantitative' />
@@ -1226,21 +1101,18 @@
       <column caption='State' datatype='string' name='[state]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
       <column caption='Stateid (State.Csv)' datatype='integer' name='[stateid (state.csv)]' role='measure' type='quantitative' />
       <column caption='Stateid' datatype='integer' name='[stateid]' role='measure' type='quantitative' />
-      <column caption='Subcategory' datatype='string' name='[subcategory]' role='dimension' type='nominal' />
-      <column caption='Subcategoryid (Subcategory.Csv)' datatype='integer' name='[subcategoryid (subcategory.csv)]' role='measure' type='quantitative' />
-      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='false' object-id='' units='records'>
-        <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='/var/folders/0n/p9ms0b591cg7_09nh12318dr0000gn/T/tableau-temp/#TableauTemp_0elxxg71h3hhbl1cc4dry1fuxa6a.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='01/24/2025 09:27:51 AM' username='tableau_internal_user'>
+      <column caption='Subcategoryid' datatype='integer' name='[subcategoryid]' role='measure' type='quantitative' />
+      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' object-id='' units='records'>
+        <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='/var/folders/0n/p9ms0b591cg7_09nh12318dr0000gn/T/tableau-temp/#TableauTemp_1ceegoo06xgf1t1h3psw60s9yp0k.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='01/24/2025 10:48:06 AM' username='tableau_internal_user'>
           <relation type='collection'>
             <relation name='customers.csv_C1B57F41F27941A78FDA26E03327A537' table='[Extract].[customers.csv_C1B57F41F27941A78FDA26E03327A537]' type='table' />
             <relation name='citymap.csv_FE4441B4A3E84F7D81EED2BC4D686FD5' table='[Extract].[citymap.csv_FE4441B4A3E84F7D81EED2BC4D686FD5]' type='table' />
             <relation name='city.csv_43D685E9E3F3405DBE50CAAAC7E27731' table='[Extract].[city.csv_43D685E9E3F3405DBE50CAAAC7E27731]' type='table' />
             <relation name='country.csv_BF89EABF0F794F57805F4A985E42E4F5' table='[Extract].[country.csv_BF89EABF0F794F57805F4A985E42E4F5]' type='table' />
-            <relation name='orders.csv_9DA8096594B947EE867D42301FE7BA4F' table='[Extract].[orders.csv_9DA8096594B947EE867D42301FE7BA4F]' type='table' />
-            <relation name='productmap.csv_AC4DF17BC77742B4AFD29D21694A009D' table='[Extract].[productmap.csv_AC4DF17BC77742B4AFD29D21694A009D]' type='table' />
-            <relation name='product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2' table='[Extract].[product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2]' type='table' />
-            <relation name='category.csv_4E708CE6F2F048A09848EE367007D683' table='[Extract].[category.csv_4E708CE6F2F048A09848EE367007D683]' type='table' />
-            <relation name='subcategory.csv_BF0F9A0E4B1A478EA47B3C45DD6B226A' table='[Extract].[subcategory.csv_BF0F9A0E4B1A478EA47B3C45DD6B226A]' type='table' />
-            <relation name='shipment.csv_099832D179AE420393DD4676161DC67D' table='[Extract].[shipment.csv_099832D179AE420393DD4676161DC67D]' type='table' />
+            <relation name='orders.csv_558FB9DB09984EB4A894BA0E0156E898' table='[Extract].[orders.csv_558FB9DB09984EB4A894BA0E0156E898]' type='table' />
+            <relation name='productmap.csv_7DEA6AA63DA94001A0C2FBE3FF3F0DF6' table='[Extract].[productmap.csv_7DEA6AA63DA94001A0C2FBE3FF3F0DF6]' type='table' />
+            <relation name='product.csv_CDD85BEB51E948C0846D78B2C36B4C49' table='[Extract].[product.csv_CDD85BEB51E948C0846D78B2C36B4C49]' type='table' />
+            <relation name='shipment.csv_6AC12B8093334DE996EC0CC86EA1F218' table='[Extract].[shipment.csv_6AC12B8093334DE996EC0CC86EA1F218]' type='table' />
             <relation name='postalcodemap.csv_946959C265964BD7A48B834989DA3AF6' table='[Extract].[postalcodemap.csv_946959C265964BD7A48B834989DA3AF6]' type='table' />
             <relation name='postalcode.csv_3E76527A17094491B296B1857C299E8F' table='[Extract].[postalcode.csv_3E76527A17094491B296B1857C299E8F]' type='table' />
             <relation name='regionmap.csv_5EFFF1CDEDCC4DE98B5D57B3E28C1DC4' table='[Extract].[regionmap.csv_5EFFF1CDEDCC4DE98B5D57B3E28C1DC4]' type='table' />
@@ -1251,10 +1123,7 @@
             <relation name='state.csv_8B01A781D27841CE9CD044C8BAABA923' table='[Extract].[state.csv_8B01A781D27841CE9CD044C8BAABA923]' type='table' />
           </relation>
           <cols>
-            <map key='[category]' value='[category.csv_4E708CE6F2F048A09848EE367007D683].[category]' />
-            <map key='[categoryid (product.csv)]' value='[product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2].[categoryid]' />
-            <map key='[categoryid (subcategory.csv)]' value='[subcategory.csv_BF0F9A0E4B1A478EA47B3C45DD6B226A].[categoryid]' />
-            <map key='[categoryid]' value='[category.csv_4E708CE6F2F048A09848EE367007D683].[categoryid]' />
+            <map key='[categoryid]' value='[product.csv_CDD85BEB51E948C0846D78B2C36B4C49].[categoryid]' />
             <map key='[city]' value='[city.csv_43D685E9E3F3405DBE50CAAAC7E27731].[city]' />
             <map key='[cityid (city.csv)]' value='[city.csv_43D685E9E3F3405DBE50CAAAC7E27731].[cityid]' />
             <map key='[cityid]' value='[citymap.csv_FE4441B4A3E84F7D81EED2BC4D686FD5].[cityid]' />
@@ -1262,43 +1131,41 @@
             <map key='[countryid (country.csv)]' value='[country.csv_BF89EABF0F794F57805F4A985E42E4F5].[countryid]' />
             <map key='[countryid]' value='[customers.csv_C1B57F41F27941A78FDA26E03327A537].[countryid]' />
             <map key='[customerid (citymap.csv)]' value='[citymap.csv_FE4441B4A3E84F7D81EED2BC4D686FD5].[customerid]' />
-            <map key='[customerid (orders.csv)]' value='[orders.csv_9DA8096594B947EE867D42301FE7BA4F].[customerid]' />
+            <map key='[customerid (orders.csv)]' value='[orders.csv_558FB9DB09984EB4A894BA0E0156E898].[customerid]' />
             <map key='[customerid (postalcodemap.csv)]' value='[postalcodemap.csv_946959C265964BD7A48B834989DA3AF6].[customerid]' />
             <map key='[customerid (regionmap.csv)]' value='[regionmap.csv_5EFFF1CDEDCC4DE98B5D57B3E28C1DC4].[customerid]' />
             <map key='[customerid (segmentmap.csv)]' value='[segmentmap.csv_BAE15391752B4EA58DB7B37C8D1206D0].[customerid]' />
             <map key='[customerid (statemap.csv)]' value='[statemap.csv_779EC512A5FF4E05B92EBF4C52C65CAE].[customerid]' />
             <map key='[customerid]' value='[customers.csv_C1B57F41F27941A78FDA26E03327A537].[customerid]' />
             <map key='[customername]' value='[customers.csv_C1B57F41F27941A78FDA26E03327A537].[customername]' />
-            <map key='[discount]' value='[orders.csv_9DA8096594B947EE867D42301FE7BA4F].[discount]' />
-            <map key='[orderdate]' value='[orders.csv_9DA8096594B947EE867D42301FE7BA4F].[orderdate]' />
-            <map key='[orderid]' value='[orders.csv_9DA8096594B947EE867D42301FE7BA4F].[orderid]' />
+            <map key='[discount]' value='[orders.csv_558FB9DB09984EB4A894BA0E0156E898].[discount]' />
+            <map key='[orderdate]' value='[orders.csv_558FB9DB09984EB4A894BA0E0156E898].[orderdate]' />
+            <map key='[orderid]' value='[orders.csv_558FB9DB09984EB4A894BA0E0156E898].[orderid]' />
             <map key='[postalcode]' value='[postalcode.csv_3E76527A17094491B296B1857C299E8F].[postalcode]' />
             <map key='[postalcodeid (postalcode.csv)]' value='[postalcode.csv_3E76527A17094491B296B1857C299E8F].[postalcodeid]' />
             <map key='[postalcodeid]' value='[postalcodemap.csv_946959C265964BD7A48B834989DA3AF6].[postalcodeid]' />
-            <map key='[productid (product.csv)]' value='[product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2].[productid]' />
-            <map key='[productid]' value='[productmap.csv_AC4DF17BC77742B4AFD29D21694A009D].[productid]' />
-            <map key='[productname]' value='[product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2].[productname]' />
-            <map key='[profit]' value='[orders.csv_9DA8096594B947EE867D42301FE7BA4F].[profit]' />
-            <map key='[quantity]' value='[orders.csv_9DA8096594B947EE867D42301FE7BA4F].[quantity]' />
+            <map key='[productid (product.csv)]' value='[product.csv_CDD85BEB51E948C0846D78B2C36B4C49].[productid]' />
+            <map key='[productid]' value='[productmap.csv_7DEA6AA63DA94001A0C2FBE3FF3F0DF6].[productid]' />
+            <map key='[productname]' value='[product.csv_CDD85BEB51E948C0846D78B2C36B4C49].[productname]' />
+            <map key='[profit]' value='[orders.csv_558FB9DB09984EB4A894BA0E0156E898].[profit]' />
+            <map key='[quantity]' value='[orders.csv_558FB9DB09984EB4A894BA0E0156E898].[quantity]' />
             <map key='[region]' value='[region.csv_56FD12DF50F048D7835CBA4F06C74699].[region]' />
             <map key='[regionid (region.csv)]' value='[region.csv_56FD12DF50F048D7835CBA4F06C74699].[regionid]' />
             <map key='[regionid]' value='[regionmap.csv_5EFFF1CDEDCC4DE98B5D57B3E28C1DC4].[regionid]' />
-            <map key='[rowid (productmap.csv)]' value='[productmap.csv_AC4DF17BC77742B4AFD29D21694A009D].[rowid]' />
-            <map key='[rowid]' value='[orders.csv_9DA8096594B947EE867D42301FE7BA4F].[rowid]' />
-            <map key='[sales]' value='[orders.csv_9DA8096594B947EE867D42301FE7BA4F].[sales]' />
+            <map key='[rowid (productmap.csv)]' value='[productmap.csv_7DEA6AA63DA94001A0C2FBE3FF3F0DF6].[rowid]' />
+            <map key='[rowid]' value='[orders.csv_558FB9DB09984EB4A894BA0E0156E898].[rowid]' />
+            <map key='[sales]' value='[orders.csv_558FB9DB09984EB4A894BA0E0156E898].[sales]' />
             <map key='[segment]' value='[segment.csv_B3F6137444254703B3F5DDA613D309EA].[segment]' />
             <map key='[segmentid (segment.csv)]' value='[segment.csv_B3F6137444254703B3F5DDA613D309EA].[segmentid]' />
             <map key='[segmentid]' value='[segmentmap.csv_BAE15391752B4EA58DB7B37C8D1206D0].[segmentid]' />
-            <map key='[shipdate]' value='[shipment.csv_099832D179AE420393DD4676161DC67D].[shipdate]' />
-            <map key='[shipmentid (shipment.csv)]' value='[shipment.csv_099832D179AE420393DD4676161DC67D].[shipmentid]' />
-            <map key='[shipmentid]' value='[orders.csv_9DA8096594B947EE867D42301FE7BA4F].[shipmentid]' />
-            <map key='[shipmode]' value='[shipment.csv_099832D179AE420393DD4676161DC67D].[shipmode]' />
+            <map key='[shipdate]' value='[orders.csv_558FB9DB09984EB4A894BA0E0156E898].[shipdate]' />
+            <map key='[shipmentid (shipment.csv)]' value='[shipment.csv_6AC12B8093334DE996EC0CC86EA1F218].[shipmentid]' />
+            <map key='[shipmentid]' value='[orders.csv_558FB9DB09984EB4A894BA0E0156E898].[shipmentid]' />
+            <map key='[shipmode]' value='[shipment.csv_6AC12B8093334DE996EC0CC86EA1F218].[shipmode]' />
             <map key='[state]' value='[state.csv_8B01A781D27841CE9CD044C8BAABA923].[state]' />
             <map key='[stateid (state.csv)]' value='[state.csv_8B01A781D27841CE9CD044C8BAABA923].[stateid]' />
             <map key='[stateid]' value='[statemap.csv_779EC512A5FF4E05B92EBF4C52C65CAE].[stateid]' />
-            <map key='[subcategory]' value='[subcategory.csv_BF0F9A0E4B1A478EA47B3C45DD6B226A].[subcategory]' />
-            <map key='[subcategoryid (subcategory.csv)]' value='[subcategory.csv_BF0F9A0E4B1A478EA47B3C45DD6B226A].[subcategoryid]' />
-            <map key='[subcategoryid]' value='[product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2].[subcategoryid]' />
+            <map key='[subcategoryid]' value='[product.csv_CDD85BEB51E948C0846D78B2C36B4C49].[subcategoryid]' />
           </cols>
           <metadata-records>
             <metadata-record class='column'>
@@ -1436,7 +1303,7 @@
               <remote-name>rowid</remote-name>
               <remote-type>20</remote-type>
               <local-name>[rowid]</local-name>
-              <parent-name>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</parent-name>
+              <parent-name>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</parent-name>
               <remote-alias>rowid</remote-alias>
               <ordinal>9</ordinal>
               <family>orders.csv</family>
@@ -1444,323 +1311,251 @@
               <aggregation>Sum</aggregation>
               <approx-count>9994</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</object-id>
+              <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>orderid</remote-name>
               <remote-type>129</remote-type>
               <local-name>[orderid]</local-name>
-              <parent-name>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</parent-name>
+              <parent-name>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</parent-name>
               <remote-alias>orderid</remote-alias>
               <ordinal>10</ordinal>
               <family>orders.csv</family>
               <local-type>string</local-type>
               <aggregation>Count</aggregation>
-              <approx-count>3401</approx-count>
+              <approx-count>3511</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RGB' />
-              <object-id>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</object-id>
+              <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>orderdate</remote-name>
               <remote-type>133</remote-type>
               <local-name>[orderdate]</local-name>
-              <parent-name>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</parent-name>
+              <parent-name>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</parent-name>
               <remote-alias>orderdate</remote-alias>
               <ordinal>11</ordinal>
               <family>orders.csv</family>
               <local-type>date</local-type>
               <aggregation>Year</aggregation>
-              <approx-count>1354</approx-count>
+              <approx-count>1507</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</object-id>
+              <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>sales</remote-name>
               <remote-type>5</remote-type>
               <local-name>[sales]</local-name>
-              <parent-name>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</parent-name>
+              <parent-name>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</parent-name>
               <remote-alias>sales</remote-alias>
               <ordinal>12</ordinal>
               <family>orders.csv</family>
               <local-type>real</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>3395</approx-count>
+              <approx-count>3332</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</object-id>
+              <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>quantity</remote-name>
               <remote-type>20</remote-type>
               <local-name>[quantity]</local-name>
-              <parent-name>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</parent-name>
+              <parent-name>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</parent-name>
               <remote-alias>quantity</remote-alias>
               <ordinal>13</ordinal>
               <family>orders.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>18</approx-count>
+              <approx-count>16</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</object-id>
+              <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>discount</remote-name>
               <remote-type>5</remote-type>
               <local-name>[discount]</local-name>
-              <parent-name>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</parent-name>
+              <parent-name>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</parent-name>
               <remote-alias>discount</remote-alias>
               <ordinal>14</ordinal>
               <family>orders.csv</family>
               <local-type>real</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>16</approx-count>
+              <approx-count>11</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</object-id>
+              <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>profit</remote-name>
               <remote-type>5</remote-type>
               <local-name>[profit]</local-name>
-              <parent-name>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</parent-name>
+              <parent-name>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</parent-name>
               <remote-alias>profit</remote-alias>
               <ordinal>15</ordinal>
               <family>orders.csv</family>
               <local-type>real</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>4028</approx-count>
+              <approx-count>3788</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</object-id>
+              <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>shipdate</remote-name>
+              <remote-type>133</remote-type>
+              <local-name>[shipdate]</local-name>
+              <parent-name>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</parent-name>
+              <remote-alias>shipdate</remote-alias>
+              <ordinal>16</ordinal>
+              <family>orders.csv</family>
+              <local-type>date</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>1549</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>customerid</remote-name>
               <remote-type>129</remote-type>
               <local-name>[customerid (orders.csv)]</local-name>
-              <parent-name>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</parent-name>
+              <parent-name>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</parent-name>
               <remote-alias>customerid</remote-alias>
-              <ordinal>16</ordinal>
+              <ordinal>17</ordinal>
               <family>orders.csv</family>
               <local-type>string</local-type>
               <aggregation>Count</aggregation>
-              <approx-count>1102</approx-count>
+              <approx-count>1068</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RGB' />
-              <object-id>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</object-id>
+              <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>shipmentid</remote-name>
               <remote-type>20</remote-type>
               <local-name>[shipmentid]</local-name>
-              <parent-name>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</parent-name>
+              <parent-name>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</parent-name>
               <remote-alias>shipmentid</remote-alias>
-              <ordinal>17</ordinal>
+              <ordinal>18</ordinal>
               <family>orders.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>2306</approx-count>
+              <approx-count>4</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[orders.csv_9DA8096594B947EE867D42301FE7BA4F]</object-id>
+              <object-id>[orders.csv_558FB9DB09984EB4A894BA0E0156E898]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>rowid</remote-name>
               <remote-type>20</remote-type>
               <local-name>[rowid (productmap.csv)]</local-name>
-              <parent-name>[productmap.csv_AC4DF17BC77742B4AFD29D21694A009D]</parent-name>
+              <parent-name>[productmap.csv_7DEA6AA63DA94001A0C2FBE3FF3F0DF6]</parent-name>
               <remote-alias>rowid</remote-alias>
-              <ordinal>18</ordinal>
+              <ordinal>19</ordinal>
               <family>productmap.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
               <approx-count>9994</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[productmap.csv_AC4DF17BC77742B4AFD29D21694A009D]</object-id>
+              <object-id>[productmap.csv_7DEA6AA63DA94001A0C2FBE3FF3F0DF6]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>productid</remote-name>
               <remote-type>129</remote-type>
               <local-name>[productid]</local-name>
-              <parent-name>[productmap.csv_AC4DF17BC77742B4AFD29D21694A009D]</parent-name>
+              <parent-name>[productmap.csv_7DEA6AA63DA94001A0C2FBE3FF3F0DF6]</parent-name>
               <remote-alias>productid</remote-alias>
-              <ordinal>19</ordinal>
+              <ordinal>20</ordinal>
               <family>productmap.csv</family>
               <local-type>string</local-type>
               <aggregation>Count</aggregation>
               <approx-count>2157</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RGB' />
-              <object-id>[productmap.csv_AC4DF17BC77742B4AFD29D21694A009D]</object-id>
+              <object-id>[productmap.csv_7DEA6AA63DA94001A0C2FBE3FF3F0DF6]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>productid</remote-name>
               <remote-type>129</remote-type>
               <local-name>[productid (product.csv)]</local-name>
-              <parent-name>[product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2]</parent-name>
+              <parent-name>[product.csv_CDD85BEB51E948C0846D78B2C36B4C49]</parent-name>
               <remote-alias>productid</remote-alias>
-              <ordinal>20</ordinal>
+              <ordinal>21</ordinal>
               <family>product.csv</family>
               <local-type>string</local-type>
               <aggregation>Count</aggregation>
               <approx-count>1894</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RGB' />
-              <object-id>[product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2]</object-id>
+              <object-id>[product.csv_CDD85BEB51E948C0846D78B2C36B4C49]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>productname</remote-name>
               <remote-type>129</remote-type>
               <local-name>[productname]</local-name>
-              <parent-name>[product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2]</parent-name>
+              <parent-name>[product.csv_CDD85BEB51E948C0846D78B2C36B4C49]</parent-name>
               <remote-alias>productname</remote-alias>
-              <ordinal>21</ordinal>
+              <ordinal>22</ordinal>
               <family>product.csv</family>
               <local-type>string</local-type>
               <aggregation>Count</aggregation>
               <approx-count>1632</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RGB' />
-              <object-id>[product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2]</object-id>
+              <object-id>[product.csv_CDD85BEB51E948C0846D78B2C36B4C49]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>subcategoryid</remote-name>
               <remote-type>20</remote-type>
               <local-name>[subcategoryid]</local-name>
-              <parent-name>[product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2]</parent-name>
+              <parent-name>[product.csv_CDD85BEB51E948C0846D78B2C36B4C49]</parent-name>
               <remote-alias>subcategoryid</remote-alias>
-              <ordinal>22</ordinal>
+              <ordinal>23</ordinal>
               <family>product.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
               <approx-count>17</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2]</object-id>
-            </metadata-record>
-            <metadata-record class='column'>
-              <remote-name>categoryid</remote-name>
-              <remote-type>20</remote-type>
-              <local-name>[categoryid (product.csv)]</local-name>
-              <parent-name>[product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2]</parent-name>
-              <remote-alias>categoryid</remote-alias>
-              <ordinal>23</ordinal>
-              <family>product.csv</family>
-              <local-type>integer</local-type>
-              <aggregation>Sum</aggregation>
-              <approx-count>3</approx-count>
-              <contains-null>true</contains-null>
-              <object-id>[product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2]</object-id>
+              <object-id>[product.csv_CDD85BEB51E948C0846D78B2C36B4C49]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>categoryid</remote-name>
               <remote-type>20</remote-type>
               <local-name>[categoryid]</local-name>
-              <parent-name>[category.csv_4E708CE6F2F048A09848EE367007D683]</parent-name>
+              <parent-name>[product.csv_CDD85BEB51E948C0846D78B2C36B4C49]</parent-name>
               <remote-alias>categoryid</remote-alias>
               <ordinal>24</ordinal>
-              <family>category.csv</family>
+              <family>product.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
               <approx-count>3</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[category.csv_4E708CE6F2F048A09848EE367007D683]</object-id>
-            </metadata-record>
-            <metadata-record class='column'>
-              <remote-name>category</remote-name>
-              <remote-type>129</remote-type>
-              <local-name>[category]</local-name>
-              <parent-name>[category.csv_4E708CE6F2F048A09848EE367007D683]</parent-name>
-              <remote-alias>category</remote-alias>
-              <ordinal>25</ordinal>
-              <family>category.csv</family>
-              <local-type>string</local-type>
-              <aggregation>Count</aggregation>
-              <approx-count>3</approx-count>
-              <contains-null>true</contains-null>
-              <collation flag='0' name='LEN_RGB' />
-              <object-id>[category.csv_4E708CE6F2F048A09848EE367007D683]</object-id>
-            </metadata-record>
-            <metadata-record class='column'>
-              <remote-name>subcategoryid</remote-name>
-              <remote-type>20</remote-type>
-              <local-name>[subcategoryid (subcategory.csv)]</local-name>
-              <parent-name>[subcategory.csv_BF0F9A0E4B1A478EA47B3C45DD6B226A]</parent-name>
-              <remote-alias>subcategoryid</remote-alias>
-              <ordinal>26</ordinal>
-              <family>subcategory.csv</family>
-              <local-type>integer</local-type>
-              <aggregation>Sum</aggregation>
-              <approx-count>17</approx-count>
-              <contains-null>true</contains-null>
-              <object-id>[subcategory.csv_BF0F9A0E4B1A478EA47B3C45DD6B226A]</object-id>
-            </metadata-record>
-            <metadata-record class='column'>
-              <remote-name>subcategory</remote-name>
-              <remote-type>129</remote-type>
-              <local-name>[subcategory]</local-name>
-              <parent-name>[subcategory.csv_BF0F9A0E4B1A478EA47B3C45DD6B226A]</parent-name>
-              <remote-alias>subcategory</remote-alias>
-              <ordinal>27</ordinal>
-              <family>subcategory.csv</family>
-              <local-type>string</local-type>
-              <aggregation>Count</aggregation>
-              <approx-count>17</approx-count>
-              <contains-null>true</contains-null>
-              <collation flag='0' name='LEN_RGB' />
-              <object-id>[subcategory.csv_BF0F9A0E4B1A478EA47B3C45DD6B226A]</object-id>
-            </metadata-record>
-            <metadata-record class='column'>
-              <remote-name>categoryid</remote-name>
-              <remote-type>20</remote-type>
-              <local-name>[categoryid (subcategory.csv)]</local-name>
-              <parent-name>[subcategory.csv_BF0F9A0E4B1A478EA47B3C45DD6B226A]</parent-name>
-              <remote-alias>categoryid</remote-alias>
-              <ordinal>28</ordinal>
-              <family>subcategory.csv</family>
-              <local-type>integer</local-type>
-              <aggregation>Sum</aggregation>
-              <approx-count>3</approx-count>
-              <contains-null>true</contains-null>
-              <object-id>[subcategory.csv_BF0F9A0E4B1A478EA47B3C45DD6B226A]</object-id>
+              <object-id>[product.csv_CDD85BEB51E948C0846D78B2C36B4C49]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>shipmentid</remote-name>
               <remote-type>20</remote-type>
               <local-name>[shipmentid (shipment.csv)]</local-name>
-              <parent-name>[shipment.csv_099832D179AE420393DD4676161DC67D]</parent-name>
+              <parent-name>[shipment.csv_6AC12B8093334DE996EC0CC86EA1F218]</parent-name>
               <remote-alias>shipmentid</remote-alias>
-              <ordinal>29</ordinal>
+              <ordinal>25</ordinal>
               <family>shipment.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>2608</approx-count>
+              <approx-count>4</approx-count>
               <contains-null>true</contains-null>
-              <object-id>[shipment.csv_099832D179AE420393DD4676161DC67D]</object-id>
-            </metadata-record>
-            <metadata-record class='column'>
-              <remote-name>shipdate</remote-name>
-              <remote-type>133</remote-type>
-              <local-name>[shipdate]</local-name>
-              <parent-name>[shipment.csv_099832D179AE420393DD4676161DC67D]</parent-name>
-              <remote-alias>shipdate</remote-alias>
-              <ordinal>30</ordinal>
-              <family>shipment.csv</family>
-              <local-type>date</local-type>
-              <aggregation>Year</aggregation>
-              <approx-count>1116</approx-count>
-              <contains-null>true</contains-null>
-              <object-id>[shipment.csv_099832D179AE420393DD4676161DC67D]</object-id>
+              <object-id>[shipment.csv_6AC12B8093334DE996EC0CC86EA1F218]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>shipmode</remote-name>
               <remote-type>129</remote-type>
               <local-name>[shipmode]</local-name>
-              <parent-name>[shipment.csv_099832D179AE420393DD4676161DC67D]</parent-name>
+              <parent-name>[shipment.csv_6AC12B8093334DE996EC0CC86EA1F218]</parent-name>
               <remote-alias>shipmode</remote-alias>
-              <ordinal>31</ordinal>
+              <ordinal>26</ordinal>
               <family>shipment.csv</family>
               <local-type>string</local-type>
               <aggregation>Count</aggregation>
               <approx-count>4</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RGB' />
-              <object-id>[shipment.csv_099832D179AE420393DD4676161DC67D]</object-id>
+              <object-id>[shipment.csv_6AC12B8093334DE996EC0CC86EA1F218]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>postalcodeid</remote-name>
@@ -1768,7 +1563,7 @@
               <local-name>[postalcodeid]</local-name>
               <parent-name>[postalcodemap.csv_946959C265964BD7A48B834989DA3AF6]</parent-name>
               <remote-alias>postalcodeid</remote-alias>
-              <ordinal>32</ordinal>
+              <ordinal>27</ordinal>
               <family>postalcodemap.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
@@ -1782,7 +1577,7 @@
               <local-name>[customerid (postalcodemap.csv)]</local-name>
               <parent-name>[postalcodemap.csv_946959C265964BD7A48B834989DA3AF6]</parent-name>
               <remote-alias>customerid</remote-alias>
-              <ordinal>33</ordinal>
+              <ordinal>28</ordinal>
               <family>postalcodemap.csv</family>
               <local-type>string</local-type>
               <aggregation>Count</aggregation>
@@ -1797,7 +1592,7 @@
               <local-name>[postalcodeid (postalcode.csv)]</local-name>
               <parent-name>[postalcode.csv_3E76527A17094491B296B1857C299E8F]</parent-name>
               <remote-alias>postalcodeid</remote-alias>
-              <ordinal>34</ordinal>
+              <ordinal>29</ordinal>
               <family>postalcode.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
@@ -1811,7 +1606,7 @@
               <local-name>[postalcode]</local-name>
               <parent-name>[postalcode.csv_3E76527A17094491B296B1857C299E8F]</parent-name>
               <remote-alias>postalcode</remote-alias>
-              <ordinal>35</ordinal>
+              <ordinal>30</ordinal>
               <family>postalcode.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
@@ -1825,7 +1620,7 @@
               <local-name>[regionid]</local-name>
               <parent-name>[regionmap.csv_5EFFF1CDEDCC4DE98B5D57B3E28C1DC4]</parent-name>
               <remote-alias>regionid</remote-alias>
-              <ordinal>36</ordinal>
+              <ordinal>31</ordinal>
               <family>regionmap.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
@@ -1839,7 +1634,7 @@
               <local-name>[customerid (regionmap.csv)]</local-name>
               <parent-name>[regionmap.csv_5EFFF1CDEDCC4DE98B5D57B3E28C1DC4]</parent-name>
               <remote-alias>customerid</remote-alias>
-              <ordinal>37</ordinal>
+              <ordinal>32</ordinal>
               <family>regionmap.csv</family>
               <local-type>string</local-type>
               <aggregation>Count</aggregation>
@@ -1854,7 +1649,7 @@
               <local-name>[regionid (region.csv)]</local-name>
               <parent-name>[region.csv_56FD12DF50F048D7835CBA4F06C74699]</parent-name>
               <remote-alias>regionid</remote-alias>
-              <ordinal>38</ordinal>
+              <ordinal>33</ordinal>
               <family>region.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
@@ -1868,7 +1663,7 @@
               <local-name>[region]</local-name>
               <parent-name>[region.csv_56FD12DF50F048D7835CBA4F06C74699]</parent-name>
               <remote-alias>region</remote-alias>
-              <ordinal>39</ordinal>
+              <ordinal>34</ordinal>
               <family>region.csv</family>
               <local-type>string</local-type>
               <aggregation>Count</aggregation>
@@ -1883,7 +1678,7 @@
               <local-name>[segmentid]</local-name>
               <parent-name>[segmentmap.csv_BAE15391752B4EA58DB7B37C8D1206D0]</parent-name>
               <remote-alias>segmentid</remote-alias>
-              <ordinal>40</ordinal>
+              <ordinal>35</ordinal>
               <family>segmentmap.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
@@ -1897,7 +1692,7 @@
               <local-name>[customerid (segmentmap.csv)]</local-name>
               <parent-name>[segmentmap.csv_BAE15391752B4EA58DB7B37C8D1206D0]</parent-name>
               <remote-alias>customerid</remote-alias>
-              <ordinal>41</ordinal>
+              <ordinal>36</ordinal>
               <family>segmentmap.csv</family>
               <local-type>string</local-type>
               <aggregation>Count</aggregation>
@@ -1912,7 +1707,7 @@
               <local-name>[segmentid (segment.csv)]</local-name>
               <parent-name>[segment.csv_B3F6137444254703B3F5DDA613D309EA]</parent-name>
               <remote-alias>segmentid</remote-alias>
-              <ordinal>42</ordinal>
+              <ordinal>37</ordinal>
               <family>segment.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
@@ -1926,7 +1721,7 @@
               <local-name>[segment]</local-name>
               <parent-name>[segment.csv_B3F6137444254703B3F5DDA613D309EA]</parent-name>
               <remote-alias>segment</remote-alias>
-              <ordinal>43</ordinal>
+              <ordinal>38</ordinal>
               <family>segment.csv</family>
               <local-type>string</local-type>
               <aggregation>Count</aggregation>
@@ -1941,7 +1736,7 @@
               <local-name>[stateid]</local-name>
               <parent-name>[statemap.csv_779EC512A5FF4E05B92EBF4C52C65CAE]</parent-name>
               <remote-alias>stateid</remote-alias>
-              <ordinal>44</ordinal>
+              <ordinal>39</ordinal>
               <family>statemap.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
@@ -1955,7 +1750,7 @@
               <local-name>[customerid (statemap.csv)]</local-name>
               <parent-name>[statemap.csv_779EC512A5FF4E05B92EBF4C52C65CAE]</parent-name>
               <remote-alias>customerid</remote-alias>
-              <ordinal>45</ordinal>
+              <ordinal>40</ordinal>
               <family>statemap.csv</family>
               <local-type>string</local-type>
               <aggregation>Count</aggregation>
@@ -1970,7 +1765,7 @@
               <local-name>[stateid (state.csv)]</local-name>
               <parent-name>[state.csv_8B01A781D27841CE9CD044C8BAABA923]</parent-name>
               <remote-alias>stateid</remote-alias>
-              <ordinal>46</ordinal>
+              <ordinal>41</ordinal>
               <family>state.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
@@ -1984,7 +1779,7 @@
               <local-name>[state]</local-name>
               <parent-name>[state.csv_8B01A781D27841CE9CD044C8BAABA923]</parent-name>
               <remote-alias>state</remote-alias>
-              <ordinal>47</ordinal>
+              <ordinal>42</ordinal>
               <family>state.csv</family>
               <local-type>string</local-type>
               <aggregation>Count</aggregation>
@@ -2002,19 +1797,6 @@
       </semantic-values>
       <object-graph>
         <objects>
-          <object caption='category.csv' id='category.csv_4E708CE6F2F048A09848EE367007D683'>
-            <properties context=''>
-              <relation connection='textscan.1ogjolv0j2f85f14nrlew1qh5hoa' name='category.csv' table='[category#csv]' type='table'>
-                <columns character-set='UTF-8' header='yes' locale='en_ZA'>
-                  <column datatype='integer' name='categoryid' ordinal='0' />
-                  <column datatype='string' name='category' ordinal='1' />
-                </columns>
-              </relation>
-            </properties>
-            <properties context='extract'>
-              <relation name='category.csv_4E708CE6F2F048A09848EE367007D683' table='[Extract].[category.csv_4E708CE6F2F048A09848EE367007D683]' type='table' />
-            </properties>
-          </object>
           <object caption='city.csv' id='city.csv_43D685E9E3F3405DBE50CAAAC7E27731'>
             <properties context=''>
               <relation connection='textscan.1ogjolv0j2f85f14nrlew1qh5hoa' name='city.csv' table='[city#csv]' type='table'>
@@ -2068,7 +1850,7 @@
               <relation name='customers.csv_C1B57F41F27941A78FDA26E03327A537' table='[Extract].[customers.csv_C1B57F41F27941A78FDA26E03327A537]' type='table' />
             </properties>
           </object>
-          <object caption='orders.csv' id='orders.csv_9DA8096594B947EE867D42301FE7BA4F'>
+          <object caption='orders.csv' id='orders.csv_558FB9DB09984EB4A894BA0E0156E898'>
             <properties context=''>
               <relation connection='textscan.1ogjolv0j2f85f14nrlew1qh5hoa' name='orders.csv' table='[orders#csv]' type='table'>
                 <columns character-set='UTF-8' header='yes' locale='en_ZA'>
@@ -2079,13 +1861,14 @@
                   <column datatype='integer' name='quantity' ordinal='4' />
                   <column datatype='real' name='discount' ordinal='5' />
                   <column datatype='real' name='profit' ordinal='6' />
-                  <column datatype='string' name='customerid' ordinal='7' />
-                  <column datatype='integer' name='shipmentid' ordinal='8' />
+                  <column datatype='date' name='shipdate' ordinal='7' />
+                  <column datatype='string' name='customerid' ordinal='8' />
+                  <column datatype='integer' name='shipmentid' ordinal='9' />
                 </columns>
               </relation>
             </properties>
             <properties context='extract'>
-              <relation name='orders.csv_9DA8096594B947EE867D42301FE7BA4F' table='[Extract].[orders.csv_9DA8096594B947EE867D42301FE7BA4F]' type='table' />
+              <relation name='orders.csv_558FB9DB09984EB4A894BA0E0156E898' table='[Extract].[orders.csv_558FB9DB09984EB4A894BA0E0156E898]' type='table' />
             </properties>
           </object>
           <object caption='postalcode.csv' id='postalcode.csv_3E76527A17094491B296B1857C299E8F'>
@@ -2114,7 +1897,7 @@
               <relation name='postalcodemap.csv_946959C265964BD7A48B834989DA3AF6' table='[Extract].[postalcodemap.csv_946959C265964BD7A48B834989DA3AF6]' type='table' />
             </properties>
           </object>
-          <object caption='product.csv' id='product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2'>
+          <object caption='product.csv' id='product.csv_CDD85BEB51E948C0846D78B2C36B4C49'>
             <properties context=''>
               <relation connection='textscan.1ogjolv0j2f85f14nrlew1qh5hoa' name='product.csv' table='[product#csv]' type='table'>
                 <columns character-set='UTF-8' header='yes' locale='en_ZA'>
@@ -2126,10 +1909,10 @@
               </relation>
             </properties>
             <properties context='extract'>
-              <relation name='product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2' table='[Extract].[product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2]' type='table' />
+              <relation name='product.csv_CDD85BEB51E948C0846D78B2C36B4C49' table='[Extract].[product.csv_CDD85BEB51E948C0846D78B2C36B4C49]' type='table' />
             </properties>
           </object>
-          <object caption='productmap.csv' id='productmap.csv_AC4DF17BC77742B4AFD29D21694A009D'>
+          <object caption='productmap.csv' id='productmap.csv_7DEA6AA63DA94001A0C2FBE3FF3F0DF6'>
             <properties context=''>
               <relation connection='textscan.1ogjolv0j2f85f14nrlew1qh5hoa' name='productmap.csv' table='[productmap#csv]' type='table'>
                 <columns character-set='UTF-8' header='yes' locale='en_ZA'>
@@ -2139,7 +1922,7 @@
               </relation>
             </properties>
             <properties context='extract'>
-              <relation name='productmap.csv_AC4DF17BC77742B4AFD29D21694A009D' table='[Extract].[productmap.csv_AC4DF17BC77742B4AFD29D21694A009D]' type='table' />
+              <relation name='productmap.csv_7DEA6AA63DA94001A0C2FBE3FF3F0DF6' table='[Extract].[productmap.csv_7DEA6AA63DA94001A0C2FBE3FF3F0DF6]' type='table' />
             </properties>
           </object>
           <object caption='region.csv' id='region.csv_56FD12DF50F048D7835CBA4F06C74699'>
@@ -2194,18 +1977,17 @@
               <relation name='segmentmap.csv_BAE15391752B4EA58DB7B37C8D1206D0' table='[Extract].[segmentmap.csv_BAE15391752B4EA58DB7B37C8D1206D0]' type='table' />
             </properties>
           </object>
-          <object caption='shipment.csv' id='shipment.csv_099832D179AE420393DD4676161DC67D'>
+          <object caption='shipment.csv' id='shipment.csv_6AC12B8093334DE996EC0CC86EA1F218'>
             <properties context=''>
               <relation connection='textscan.1ogjolv0j2f85f14nrlew1qh5hoa' name='shipment.csv' table='[shipment#csv]' type='table'>
                 <columns character-set='UTF-8' header='yes' locale='en_ZA'>
                   <column datatype='integer' name='shipmentid' ordinal='0' />
-                  <column datatype='date' name='shipdate' ordinal='1' />
-                  <column datatype='string' name='shipmode' ordinal='2' />
+                  <column datatype='string' name='shipmode' ordinal='1' />
                 </columns>
               </relation>
             </properties>
             <properties context='extract'>
-              <relation name='shipment.csv_099832D179AE420393DD4676161DC67D' table='[Extract].[shipment.csv_099832D179AE420393DD4676161DC67D]' type='table' />
+              <relation name='shipment.csv_6AC12B8093334DE996EC0CC86EA1F218' table='[Extract].[shipment.csv_6AC12B8093334DE996EC0CC86EA1F218]' type='table' />
             </properties>
           </object>
           <object caption='state.csv' id='state.csv_8B01A781D27841CE9CD044C8BAABA923'>
@@ -2234,30 +2016,8 @@
               <relation name='statemap.csv_779EC512A5FF4E05B92EBF4C52C65CAE' table='[Extract].[statemap.csv_779EC512A5FF4E05B92EBF4C52C65CAE]' type='table' />
             </properties>
           </object>
-          <object caption='subcategory.csv' id='subcategory.csv_BF0F9A0E4B1A478EA47B3C45DD6B226A'>
-            <properties context=''>
-              <relation connection='textscan.1ogjolv0j2f85f14nrlew1qh5hoa' name='subcategory.csv' table='[subcategory#csv]' type='table'>
-                <columns character-set='UTF-8' header='yes' locale='en_ZA' separator=','>
-                  <column datatype='integer' name='subcategoryid' ordinal='0' />
-                  <column datatype='string' name='subcategory' ordinal='1' />
-                  <column datatype='integer' name='categoryid' ordinal='2' />
-                </columns>
-              </relation>
-            </properties>
-            <properties context='extract'>
-              <relation name='subcategory.csv_BF0F9A0E4B1A478EA47B3C45DD6B226A' table='[Extract].[subcategory.csv_BF0F9A0E4B1A478EA47B3C45DD6B226A]' type='table' />
-            </properties>
-          </object>
         </objects>
         <relationships>
-          <relationship>
-            <expression op='='>
-              <expression op='[categoryid (product.csv)]' />
-              <expression op='[categoryid]' />
-            </expression>
-            <first-end-point object-id='product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2' />
-            <second-end-point object-id='category.csv_4E708CE6F2F048A09848EE367007D683' />
-          </relationship>
           <relationship>
             <expression op='='>
               <expression op='[cityid]' />
@@ -2288,7 +2048,7 @@
               <expression op='[customerid (orders.csv)]' />
             </expression>
             <first-end-point object-id='customers.csv_C1B57F41F27941A78FDA26E03327A537' />
-            <second-end-point object-id='orders.csv_9DA8096594B947EE867D42301FE7BA4F' />
+            <second-end-point object-id='orders.csv_558FB9DB09984EB4A894BA0E0156E898' />
           </relationship>
           <relationship>
             <expression op='='>
@@ -2311,16 +2071,16 @@
               <expression op='[productid]' />
               <expression op='[productid (product.csv)]' />
             </expression>
-            <first-end-point object-id='productmap.csv_AC4DF17BC77742B4AFD29D21694A009D' />
-            <second-end-point object-id='product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2' />
+            <first-end-point object-id='productmap.csv_7DEA6AA63DA94001A0C2FBE3FF3F0DF6' />
+            <second-end-point object-id='product.csv_CDD85BEB51E948C0846D78B2C36B4C49' />
           </relationship>
           <relationship>
             <expression op='='>
               <expression op='[rowid]' />
               <expression op='[rowid (productmap.csv)]' />
             </expression>
-            <first-end-point object-id='orders.csv_9DA8096594B947EE867D42301FE7BA4F' />
-            <second-end-point object-id='productmap.csv_AC4DF17BC77742B4AFD29D21694A009D' />
+            <first-end-point object-id='orders.csv_558FB9DB09984EB4A894BA0E0156E898' />
+            <second-end-point object-id='productmap.csv_7DEA6AA63DA94001A0C2FBE3FF3F0DF6' />
           </relationship>
           <relationship>
             <expression op='='>
@@ -2359,8 +2119,8 @@
               <expression op='[shipmentid]' />
               <expression op='[shipmentid (shipment.csv)]' />
             </expression>
-            <first-end-point object-id='orders.csv_9DA8096594B947EE867D42301FE7BA4F' />
-            <second-end-point object-id='shipment.csv_099832D179AE420393DD4676161DC67D' />
+            <first-end-point object-id='orders.csv_558FB9DB09984EB4A894BA0E0156E898' />
+            <second-end-point object-id='shipment.csv_6AC12B8093334DE996EC0CC86EA1F218' />
           </relationship>
           <relationship>
             <expression op='='>
@@ -2378,14 +2138,6 @@
             <first-end-point object-id='customers.csv_C1B57F41F27941A78FDA26E03327A537' />
             <second-end-point object-id='statemap.csv_779EC512A5FF4E05B92EBF4C52C65CAE' />
           </relationship>
-          <relationship>
-            <expression op='='>
-              <expression op='[subcategoryid]' />
-              <expression op='[subcategoryid (subcategory.csv)]' />
-            </expression>
-            <first-end-point object-id='product.csv_AF48411C6B3B4F8BB18C93CAC1541BE2' />
-            <second-end-point object-id='subcategory.csv_BF0F9A0E4B1A478EA47B3C45DD6B226A' />
-          </relationship>
         </relationships>
       </object-graph>
     </datasource>
@@ -2397,13 +2149,27 @@
     <worksheet name='Sheet 1'>
       <table>
         <view>
-          <datasources />
+          <datasources>
+            <datasource caption='customers+' name='federated.0gl3kmf0jeh8oa1dgmy3e1v30w94' />
+          </datasources>
           <mapsources>
             <mapsource name='Tableau' />
           </mapsources>
+          <datasource-dependencies datasource='federated.0gl3kmf0jeh8oa1dgmy3e1v30w94'>
+            <column caption='Country' datatype='string' name='[country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column-instance column='[country]' derivation='None' name='[none:country:nk]' pivot='key' type='nominal' />
+            <column-instance column='[state]' derivation='None' name='[none:state:nk]' pivot='key' type='nominal' />
+            <column caption='Profit' datatype='real' name='[profit]' role='measure' type='quantitative' />
+            <column caption='State' datatype='string' name='[state]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+            <column-instance column='[profit]' derivation='Sum' name='[sum:profit:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
           <aggregation value='true' />
         </view>
         <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.0gl3kmf0jeh8oa1dgmy3e1v30w94].[Longitude (generated)]' field-type='quantitative' max='-7393390.088015113' min='-13760909.363015527' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.0gl3kmf0jeh8oa1dgmy3e1v30w94].[Latitude (generated)]' field-type='quantitative' max='6578484.0074799415' min='2757972.2906662035' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+          </style-rule>
           <style-rule element='map'>
             <format attr='washout' value='0.0' />
           </style-rule>
@@ -2413,11 +2179,17 @@
             <view>
               <breakdown value='auto' />
             </view>
-            <mark class='Automatic' />
+            <mark class='Pie' />
+            <encodings>
+              <lod column='[federated.0gl3kmf0jeh8oa1dgmy3e1v30w94].[none:country:nk]' />
+              <lod column='[federated.0gl3kmf0jeh8oa1dgmy3e1v30w94].[none:state:nk]' />
+              <wedge-size column='[federated.0gl3kmf0jeh8oa1dgmy3e1v30w94].[sum:profit:qk]' />
+              <size column='[federated.0gl3kmf0jeh8oa1dgmy3e1v30w94].[sum:profit:qk]' />
+            </encodings>
           </pane>
         </panes>
-        <rows />
-        <cols />
+        <rows>[federated.0gl3kmf0jeh8oa1dgmy3e1v30w94].[Latitude (generated)]</rows>
+        <cols>[federated.0gl3kmf0jeh8oa1dgmy3e1v30w94].[Longitude (generated)]</cols>
       </table>
       <simple-id uuid='{4DE9FEA4-5493-4EA5-ACBE-1FCA6D573A97}' />
     </worksheet>
@@ -2441,6 +2213,11 @@
           </strip>
           <strip size='31'>
             <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0gl3kmf0jeh8oa1dgmy3e1v30w94].[sum:profit:qk]' type='size' />
           </strip>
         </edge>
       </cards>
