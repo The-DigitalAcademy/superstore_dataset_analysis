@@ -1102,7 +1102,7 @@
       <column caption='Stateid (State.Csv)' datatype='integer' name='[stateid (state.csv)]' role='measure' type='quantitative' />
       <column caption='Stateid' datatype='integer' name='[stateid]' role='measure' type='quantitative' />
       <column caption='Subcategoryid' datatype='integer' name='[subcategoryid]' role='measure' type='quantitative' />
-      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' object-id='' units='records'>
+      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='false' object-id='' units='records'>
         <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='/var/folders/0n/p9ms0b591cg7_09nh12318dr0000gn/T/tableau-temp/#TableauTemp_1ceegoo06xgf1t1h3psw60s9yp0k.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='01/24/2025 10:48:06 AM' username='tableau_internal_user'>
           <relation type='collection'>
             <relation name='customers.csv_C1B57F41F27941A78FDA26E03327A537' table='[Extract].[customers.csv_C1B57F41F27941A78FDA26E03327A537]' type='table' />
